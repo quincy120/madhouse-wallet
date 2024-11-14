@@ -188,50 +188,11 @@ input.file {
   color: #fd5454;
   border-color: #fd5454;
 }
-/* pills tab */
-.pillsTab.nav {
-  flex-wrap: nowrap;
-  padding: 3px;
-  overflow: scroll;
-  scrollbar-width: none;
+button.slick-arrow.slick-prev {
+  left: -10px;
 }
-.pillsTab.nav a.nav-link {
-  font-weight: 500;
-  color: #c2c2c2;
-  min-width: 130px;
-  white-space: nowrap;
-}
-.pillsTab.nav a.nav-link.active {
-  color: #fff;
-}
-/* underline tab */
-.underlineTab a.nav-link {
-  color: #665c5c;
-}
-.underlineTab a.nav-link:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  border-radius: 5px;
-  background: #dc1919;
-  width: 100%;
-  transform: translateY(50%);
-  opacity: 0;
-}
-.underlineTab a.nav-link.active {
-  color: #000;
-}
-.underlineTab a.nav-link.active:after {
-  opacity: 1;
-}
-header .dropdown:has(.dropdown-menu.show) .position-fixed {
-  display: block !important;
-}
-/* commissionpop */
-.SetCommissionPop .modal-dialog {
-  max-width: 400px;
+button.slick-arrow.slick-next {
+  right: -10px;
 }
 @media (min-width: 1200px) {
   .container {

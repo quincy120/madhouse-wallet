@@ -13,8 +13,13 @@ import TableLayout from "../../../components/TableLayout";
 import p1 from "../../../Assets/images/user.png";
 import CounterList from "../../../components/CounterList";
 import { CardCstm, GreyBtn } from "./DashboardStyled";
+import Slider from "react-slick";
 const Dashboard = () => {
   const cardData = [
+    { head: "Total Deposit", value: "$234234", icn: icn1 },
+    { head: "Earned", value: "$234234", icn: icn2 },
+    { head: "Daily Rewards", value: "$234234", icn: icn3 },
+    { head: "APR", value: "$234234", icn: icn1 },
     { head: "Total Deposit", value: "$234234", icn: icn1 },
     { head: "Earned", value: "$234234", icn: icn2 },
     { head: "Daily Rewards", value: "$234234", icn: icn3 },
@@ -57,7 +62,68 @@ const Dashboard = () => {
         "Withdraw BTC from Madhouse Coverage",
       ],
     },
+    {
+      btcHead: "BTC ==> OP Bridge & Yield Farm",
+      cardTitle: "Velodrome Finance",
+      cardDescp:
+        " Velodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...",
+      btns: ["Delfi", "Governance", "Yield"],
+      list: [
+        "Deposit BTC into Madhouse Wallet",
+        "Deposit BTC into Madhouse Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
+    },
+    {
+      btcHead: "BTC ==> Base Bridge & Yield Farm",
+      cardTitle: "Aerodrome Finance",
+      cardDescp:
+        " Aerodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...",
+      btns: ["Delfi", "Governance", "Yield"],
+      list: [
+        "Deposit BTC into Madhouse Wallet",
+        "Deposit BTC into Madhouse Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
+    },
+    {
+      btcHead: "BTC ==> Borrow USD",
+      cardTitle: "Threshold USD",
+      cardDescp:
+        "Threshold USD (thUSD) is a stablecoin soft-pegged against USD and backed by ETH and tBTC",
+      btns: ["Stablecoin"],
+      list: [
+        "Deposit BTC into Madhouse Wallet",
+        "Borrow and Redeem USD/Buy Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
+    },
   ];
+  const [showData, setShowData] = useState();
+  var BtcCardSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  const handleDataBtc = (key) => {
+    setShowData((prevKey) => (prevKey === key ? null : key));
+  };
   return (
     <>
       <section className={` position-relative dashboard py-3`}>
@@ -130,11 +196,15 @@ const Dashboard = () => {
               </CardCstm>
             </Col>
             <Col lg="12" className="my-2">
-              <Row>
+              <Slider {...BtcCardSettings}>
                 {BtcCard.map((item, key) => (
-                  <Col key={key} md="4" sm="6" className="my-2">
+                  <div key={key} className="my-2 px-3">
                     <p className="m-0 text-center">{item.btcHead}</p>
-                    <CardCstm className="cardCstm rounded-3 p-3">
+                    <CardCstm
+                      onClick={() => handleDataBtc(key)}
+                      className="cardCstm rounded-3 p-3 "
+                      style={{ cursor: "pointer" }}
+                    >
                       <div className="top d-flex align-items-start justify-content-between pb-2">
                         <span className="icn">{icn1}</span>
                         <ul className="list-unstyled ps-0 mb-0 d-flex align-items-center">
@@ -183,18 +253,20 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </CardCstm>
-                    <ul className="list-unstyled ps-0 mb-0 mt-2">
-                      {item.list.map((item, key) => (
-                        <li key={key} className="py-1">
-                          <div className="cardCstm text-center rounded-3 p-3 border">
-                            <p className="m-0">{item}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </Col>
+                    {showData == key && (
+                      <ul className="list-unstyled ps-0 mb-0 mt-2">
+                        {item.list.map((item, key) => (
+                          <li key={key} className="py-1">
+                            <div className="cardCstm text-center rounded-3 p-3 border">
+                              <p className="m-0">{item}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 ))}
-              </Row>
+              </Slider>
             </Col>
           </Row>
         </Container>
