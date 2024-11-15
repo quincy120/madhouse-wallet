@@ -8,6 +8,7 @@ import {
   NavDropdown,
   Navbar,
 } from "react-bootstrap";
+import Switch from "react-switch";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 // css
@@ -17,8 +18,13 @@ import styles from "./Header.module.scss";
 // import logo from "../../Assets/images/logo.png";
 import user from "../../Assets/images/user.png";
 import ConfirmationPop from "../Modals/ConfirmationPop";
+import { useTheme } from "../../ContextApi/ThemeContext";
+import styled from "styled-components";
+import { Tooltip } from "react-tooltip";
 
 const Header = ({ sidebar, setSidebar }) => {
+  const { theme, toggleTheme } = useTheme();
+
   const navigate = useNavigate();
   const location = useLocation();
   const [confirmation, setConfirmation] = useState();
@@ -35,6 +41,9 @@ const Header = ({ sidebar, setSidebar }) => {
   const handleConfirmation = () => setConfirmation(!confirmation);
 
   console.log(heading, "headinggggggg");
+
+  const isChecked = theme === "light";
+
   return (
     <>
       <ConfirmationPop
@@ -42,15 +51,15 @@ const Header = ({ sidebar, setSidebar }) => {
         setConfirmation={setConfirmation}
       />
       <header
-        className={`${styles.siteHeader}  siteHeader  sticky-top pt-lg-3 py-1 w-100`}
-        style={{ zIndex: 99, background: "#0d1017" }}
+        className={`${styles.siteHeader}  siteHeader  sticky-top pt-lg-3 py-1 w-100 shadow`}
+        style={{ zIndex: 99, background: "var(--backgroundColor)" }}
       >
         <Container>
           <Navbar expand="lg" className="">
             <Navbar.Brand
-              className={`fw-bold text-white`}
+              className={`fw-bold`}
               href="#"
-              style={{ fontSize: 20 }}
+              style={{ fontSize: 20, color: "var(--textColor)" }}
             >
               Madhouse Wallet
             </Navbar.Brand>
@@ -65,6 +74,31 @@ const Header = ({ sidebar, setSidebar }) => {
             >
               <Nav className=" my-2 my-lg-0 align-items-center justify-content-end w-100 gap-10 flex-wrap">
                 <div className="right d-flex align-items-center gap-10 flex-wrap">
+                  <Tooltip
+                    id="theme"
+                    style={{ backgroundColor: "#76fc93", color: "#000" }}
+                  />
+                  <div
+                    className=""
+                    data-tooltip-id="theme"
+                    data-tooltip-content={
+                      !isChecked ? "Dark Theme" : "Light Theme"
+                    }
+                  >
+                    <GradientHandleSwitch
+                      uncheckedIcon=""
+                      checkedIcon=""
+                      height={16}
+                      width={48}
+                      handleDiameter={24}
+                      offColor="#4C4C57"
+                      onColor="#4C4C57"
+                      checked={isChecked} // Toggle the switch based on theme
+                      onChange={toggleTheme}
+                      boxShadow="0px 0px 0px 0px"
+                      activeBoxShadow="0px 0px 0px 0px"
+                    />
+                  </div>
                   <Button className="d-flex align-items-center justify-content-center commonBtn">
                     Gnosis Safe Address: 32345234sdfsd23423
                   </Button>
@@ -114,5 +148,11 @@ const Header = ({ sidebar, setSidebar }) => {
     </>
   );
 };
+
+const GradientHandleSwitch = styled(Switch)`
+  .react-switch-handle {
+    background: linear-gradient(180deg, #76fc93 0%, #1f854f 100%) !important;
+  }
+`;
 
 export default Header;

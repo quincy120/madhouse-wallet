@@ -11,9 +11,14 @@ import TableLayout from "../../../components/TableLayout";
 
 // img
 import p1 from "../../../Assets/images/user.png";
+import Aerodrome from "../../../Assets/images/Aerodrome.png";
+import BUSD from "../../../Assets/images/BUSD.png";
+import Velodrome from "../../../Assets/images/Velodrome.png";
 import CounterList from "../../../components/CounterList";
 import { CardCstm, GreyBtn } from "./DashboardStyled";
 import Slider from "react-slick";
+import BTCAddressPop from "../../../components/Modals/BtcAddressPop";
+import NFTSlider from "./NFTSlider";
 const Dashboard = () => {
   const cardData = [
     { head: "Total Deposit", value: "$234234", icn: icn1 },
@@ -27,6 +32,7 @@ const Dashboard = () => {
   ];
   const BtcCard = [
     {
+      icn: Velodrome,
       btcHead: "BTC ==> OP Bridge & Yield Farm",
       cardTitle: "Velodrome Finance",
       cardDescp:
@@ -39,6 +45,7 @@ const Dashboard = () => {
       ],
     },
     {
+      icn: Aerodrome,
       btcHead: "BTC ==> Base Bridge & Yield Farm",
       cardTitle: "Aerodrome Finance",
       cardDescp:
@@ -51,6 +58,7 @@ const Dashboard = () => {
       ],
     },
     {
+      icn: BUSD,
       btcHead: "BTC ==> Borrow USD",
       cardTitle: "Threshold USD",
       cardDescp:
@@ -63,6 +71,7 @@ const Dashboard = () => {
       ],
     },
     {
+      icn: Velodrome,
       btcHead: "BTC ==> OP Bridge & Yield Farm",
       cardTitle: "Velodrome Finance",
       cardDescp:
@@ -75,6 +84,7 @@ const Dashboard = () => {
       ],
     },
     {
+      icn: Aerodrome,
       btcHead: "BTC ==> Base Bridge & Yield Farm",
       cardTitle: "Aerodrome Finance",
       cardDescp:
@@ -87,6 +97,7 @@ const Dashboard = () => {
       ],
     },
     {
+      icn: BUSD,
       btcHead: "BTC ==> Borrow USD",
       cardTitle: "Threshold USD",
       cardDescp:
@@ -100,8 +111,9 @@ const Dashboard = () => {
     },
   ];
   const [showData, setShowData] = useState();
+  const [btcAddress, setBtcAddress] = useState();
   var BtcCardSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -124,8 +136,11 @@ const Dashboard = () => {
   const handleDataBtc = (key) => {
     setShowData((prevKey) => (prevKey === key ? null : key));
   };
+  const handleAddressPop = () => setBtcAddress(!btcAddress);
+
   return (
     <>
+      <BTCAddressPop btcAddress={btcAddress} setBtcAddress={setBtcAddress} />
       <section className={` position-relative dashboard py-3`}>
         <Container>
           <Row>
@@ -141,9 +156,7 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="content">
-                    <h6 className="m-0 text-white fw-normal">
-                      eth: 324rqwerqwer323423
-                    </h6>
+                    <h6 className="m-0 fw-normal">eth: 324rqwerqwer323423</h6>
                     <div className="d-flex align-items-center gap-10">
                       <Button className="border-0 p-0" variant="transparent">
                         {shareIcn}
@@ -171,7 +184,7 @@ const Dashboard = () => {
             <Col sm="6" className="my-2">
               <CardCstm
                 className={`  rounded-3 p-3 pb-2 px-lg-4 h-100 d-flex align-items-center`}
-                style={{ background: "#000" }}
+                style={{ background: "var(--cardBg2)" }}
               >
                 <div className="contentBody pt-2 w-100">
                   <div className="graphBody">
@@ -183,10 +196,10 @@ const Dashboard = () => {
             <Col sm="6" className="my-2">
               <CardCstm
                 className={`rounded-3 p-3 px-lg-4 h-100`}
-                style={{ background: "#000" }}
+                style={{ background: "var(--cardBg2)" }}
               >
                 <div className="top pb-3">
-                  <h2 className="m-0 fw-sbold text-white">$ 84,234.27</h2>
+                  <h2 className="m-0 fw-sbold">$ 84,234.27</h2>
                   <p className="m-0 py-1 themeClr">−36.15 (0.15%)</p>
                   <p className="m-0">14 Nov, 12:47 pm IST • Disclaimer</p>
                 </div>
@@ -206,7 +219,14 @@ const Dashboard = () => {
                       style={{ cursor: "pointer" }}
                     >
                       <div className="top d-flex align-items-start justify-content-between pb-2">
-                        <span className="icn">{icn1}</span>
+                        <span className="icn">
+                          <img
+                            src={item.icn}
+                            alt=""
+                            style={{ height: 70 }}
+                            className="img-fluid object-contain"
+                          />
+                        </span>
                         <ul className="list-unstyled ps-0 mb-0 d-flex align-items-center">
                           <li className="px-1">
                             <Button
@@ -235,9 +255,7 @@ const Dashboard = () => {
                         </ul>
                       </div>
                       <div className="content pt-2">
-                        <h6 className="m-0 text-white fw-sbold pb-1">
-                          {item.cardTitle}
-                        </h6>
+                        <h6 className="m-0 fw-sbold pb-1">{item.cardTitle}</h6>
                         <p className="m-0 fw-normal" style={{ fontSize: 12 }}>
                           {item.cardDescp}
                         </p>
@@ -257,7 +275,11 @@ const Dashboard = () => {
                       <ul className="list-unstyled ps-0 mb-0 mt-2">
                         {item.list.map((item, key) => (
                           <li key={key} className="py-1">
-                            <div className="cardCstm text-center rounded-3 p-3 border">
+                            <div
+                              onClick={handleAddressPop}
+                              style={{ cursor: "pointer" }}
+                              className="cardCstm text-center rounded-3 p-3 border"
+                            >
                               <p className="m-0">{item}</p>
                             </div>
                           </li>
@@ -267,6 +289,9 @@ const Dashboard = () => {
                   </div>
                 ))}
               </Slider>
+            </Col>
+            <Col lg="12" className="my-2 pt-3">
+              <NFTSlider />
             </Col>
           </Row>
         </Container>

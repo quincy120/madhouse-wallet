@@ -83,7 +83,7 @@ const AreaChart = () => {
         type: "datetime",
         labels: {
           style: {
-            colors: "#ffffff", // Set x-axis labels to white
+            colors: "var(--textColor)", // Set x-axis labels to white
           },
           formatter: function (value) {
             const date = new Date(value);
@@ -95,7 +95,7 @@ const AreaChart = () => {
         opposite: false,
         labels: {
           style: {
-            colors: "#ffffff", // Set y-axis labels to white
+            colors: "var(--textColor)", // Set y-axis labels to white
           },
         },
       },

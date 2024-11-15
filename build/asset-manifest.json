@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.30922b80.css",
-    "main.js": "/static/js/main.9cbdce08.js",
+    "main.css": "/static/css/main.59f60a44.css",
+    "main.js": "/static/js/main.9dfeace1.js",
     "static/media/user.png": "/static/media/user.f2b2694511cf7b3550fb.png",
+    "static/media/Velodrome.png": "/static/media/Velodrome.62fc741a884c26f8a2bd.png",
+    "static/media/Aerodrome.png": "/static/media/Aerodrome.3e5b2b0e335370f7e7c8.png",
+    "static/media/BUSD.png": "/static/media/BUSD.8e52f96febad661c5197.png",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.30922b80.css.map": "/static/css/main.30922b80.css.map",
-    "main.9cbdce08.js.map": "/static/js/main.9cbdce08.js.map"
+    "main.59f60a44.css.map": "/static/css/main.59f60a44.css.map",
+    "main.9dfeace1.js.map": "/static/js/main.9dfeace1.js.map"
   },
   "entrypoints": [
-    "static/css/main.30922b80.css",
-    "static/js/main.9cbdce08.js"
+    "static/css/main.59f60a44.css",
+    "static/js/main.9dfeace1.js"
   ]
 }
