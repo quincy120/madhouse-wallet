@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap'
+import React, { useState } from "react";
+import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 
 // css
-import styles from './BTCAddressPop.module.scss'
+import styles from "./BTCAddressPop.module.scss";
 
 // img
 
 const BTCAddressPop = ({ btcAddress, setBtcAddress }) => {
-  const handleAddressPop = () => setBtcAddress(!btcAddress)
+  const handleAddressPop = () => setBtcAddress(!btcAddress);
 
   return (
     <>
@@ -61,14 +61,14 @@ const BTCAddressPop = ({ btcAddress, setBtcAddress }) => {
           <ul className="list-unstyled ps-0 mb-0">
             <li
               className="py-1 d-flex align-items-center justify-content-between"
-              style={{ borderBottom: '1px dashed var(--cardBg2)' }}
+              style={{ borderBottom: "1px dashed var(--cardBg2)" }}
             >
               <p className="m-0">Bridge:</p>
               <p className="m-0 fw-sbold">Threshold Network</p>
             </li>
             <li
               className="py-1 d-flex align-items-center justify-content-between"
-              style={{ borderBottom: '1px dashed var(--cardBg2)' }}
+              style={{ borderBottom: "1px dashed var(--cardBg2)" }}
             >
               <p className="m-0">Destination:</p>
               <p className="m-0 fw-sbold">Base Network</p>
@@ -110,7 +110,7 @@ const BTCAddressPop = ({ btcAddress, setBtcAddress }) => {
         </Modal.Body>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default BTCAddressPop
+export default BTCAddressPop;

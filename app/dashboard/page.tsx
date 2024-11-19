@@ -1,118 +1,118 @@
-'use client'
-import React, { useRef, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import { ThemeProvider } from '@/components/ContextApi/ThemeContext'
+"use client";
+import React, { useRef, useState } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { ThemeProvider } from "@/components/ContextApi/ThemeContext";
 
 // css
-import AreaChart from '@/components/graph/AreaChart/index'
+import AreaChart from "@/components/graph/AreaChart/index";
 
 // img
-import p1 from '@/public/user.png'
+import p1 from "@/public/user.png";
 
-import Aerodrome from '../../../Assets/images/Aerodrome.png'
-import BUSD from '../../../Assets/images/BUSD.png'
-import Velodrome from '../../../Assets/images/Velodrome.png'
-import CounterList from '@/components/CounterList/index'
-import { CardCstm, GreyBtn } from './DashboardStyled'
-import Slider from 'react-slick'
-import BTCAddressPop from '@/components/Modals/BtcAddressPop/index'
-import NFTSlider from './NFTSlider'
-import TransactionTable from './TransactionTable'
-import MyActivity from './myActivity'
-import Header from '@/components/Header'
-import Image from 'next/image'
+import Aerodrome from "../../../Assets/images/Aerodrome.png";
+import BUSD from "../../../Assets/images/BUSD.png";
+import Velodrome from "../../../Assets/images/Velodrome.png";
+import CounterList from "@/components/CounterList/index";
+import { CardCstm, GreyBtn } from "./DashboardStyled";
+import Slider from "react-slick";
+import BTCAddressPop from "@/components/Modals/BtcAddressPop/index";
+import NFTSlider from "./NFTSlider";
+import TransactionTable from "./TransactionTable";
+import MyActivity from "./myActivity";
+import Header from "@/components/Header";
+import Image from "next/image";
 
 interface CardData {
-  head: string
-  value: string
-  icn: React.ReactNode
+  head: string;
+  value: string;
+  icn: React.ReactNode;
 }
 
 interface BtcCardItem {
-  icn: React.ReactNode
-  icn1: React.ReactNode
-  exchange: string
-  liquidity: string
-  CurrentAPY: string
-  monthAPY: string
-  btcHead: string
-  cardTitle: string
-  cardDescp: string
-  btns: string[]
-  list: string[]
+  icn: React.ReactNode;
+  icn1: React.ReactNode;
+  exchange: string;
+  liquidity: string;
+  CurrentAPY: string;
+  monthAPY: string;
+  btcHead: string;
+  cardTitle: string;
+  cardDescp: string;
+  btns: string[];
+  list: string[];
 }
 
 const Dashboard: React.FC = () => {
   const cardData: CardData[] = [
-    { head: 'Total Deposit', value: '$234234', icn: icn1 },
-    { head: 'Earned', value: '$234234', icn: icn2 },
-    { head: 'Daily Rewards', value: '$234234', icn: icn3 },
-    { head: 'APR', value: '$234234', icn: icn1 },
-    { head: 'Total Deposit', value: '$234234', icn: icn1 },
-    { head: 'Earned', value: '$234234', icn: icn2 },
-    { head: 'Daily Rewards', value: '$234234', icn: icn3 },
-    { head: 'APR', value: '$234234', icn: icn1 }
-  ]
+    { head: "Total Deposit", value: "$234234", icn: icn1 },
+    { head: "Earned", value: "$234234", icn: icn2 },
+    { head: "Daily Rewards", value: "$234234", icn: icn3 },
+    { head: "APR", value: "$234234", icn: icn1 },
+    { head: "Total Deposit", value: "$234234", icn: icn1 },
+    { head: "Earned", value: "$234234", icn: icn2 },
+    { head: "Daily Rewards", value: "$234234", icn: icn3 },
+    { head: "APR", value: "$234234", icn: icn1 },
+  ];
 
   const BtcCard: BtcCardItem[] = [
     {
       icn: btcIcn,
       icn1: usdt,
-      exchange: 'Mainnet Aaave tBTC ==> Tether',
-      liquidity: '$175m',
-      CurrentAPY: '6.3%',
-      monthAPY: '4.5%',
-      btcHead: 'BTC ==> OP Bridge & Yield Farm',
-      cardTitle: 'Velodrome Finance',
+      exchange: "Mainnet Aaave tBTC ==> Tether",
+      liquidity: "$175m",
+      CurrentAPY: "6.3%",
+      monthAPY: "4.5%",
+      btcHead: "BTC ==> OP Bridge & Yield Farm",
+      cardTitle: "Velodrome Finance",
       cardDescp:
-        'Velodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...',
-      btns: ['Delfi', 'Governance', 'Yield'],
+        "Velodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...",
+      btns: ["Delfi", "Governance", "Yield"],
       list: [
-        'Deposit BTC into Madhouse Wallet',
-        'Deposit BTC into Madhouse Coverage',
-        'Withdraw BTC from Madhouse Coverage'
-      ]
+        "Deposit BTC into Madhouse Wallet",
+        "Deposit BTC into Madhouse Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
     },
     {
       icn: btcIcn,
       icn1: usdc,
-      exchange: 'Mainnet Aaave tBTC ==> usdc',
-      liquidity: '$200m',
-      CurrentAPY: '6%',
-      monthAPY: '4%',
-      btcHead: 'BTC ==> Base Bridge & Yield Farm',
-      cardTitle: 'Aerodrome Finance',
+      exchange: "Mainnet Aaave tBTC ==> usdc",
+      liquidity: "$200m",
+      CurrentAPY: "6%",
+      monthAPY: "4%",
+      btcHead: "BTC ==> Base Bridge & Yield Farm",
+      cardTitle: "Aerodrome Finance",
       cardDescp:
-        'Aerodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...',
-      btns: ['Delfi', 'Governance', 'Yield'],
+        "Aerodrome Finance is a next-generation AMM that combines the best of curve. Convex and Uniswa...",
+      btns: ["Delfi", "Governance", "Yield"],
       list: [
-        'Deposit BTC into Madhouse Wallet',
-        'Deposit BTC into Madhouse Coverage',
-        'Withdraw BTC from Madhouse Coverage'
-      ]
+        "Deposit BTC into Madhouse Wallet",
+        "Deposit BTC into Madhouse Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
     },
     {
       icn: btcIcn,
       icn1: dai,
-      exchange: 'Mainnet Aaave tBTC ==> usdc',
-      liquidity: '$17m',
-      CurrentAPY: '6.5%',
-      monthAPY: '5%',
-      btcHead: 'BTC ==> Borrow USD',
-      cardTitle: 'Threshold USD',
+      exchange: "Mainnet Aaave tBTC ==> usdc",
+      liquidity: "$17m",
+      CurrentAPY: "6.5%",
+      monthAPY: "5%",
+      btcHead: "BTC ==> Borrow USD",
+      cardTitle: "Threshold USD",
       cardDescp:
-        'Threshold USD (thUSD) is a stablecoin soft-pegged against USD and backed by ETH and tBTC',
-      btns: ['Stablecoin'],
+        "Threshold USD (thUSD) is a stablecoin soft-pegged against USD and backed by ETH and tBTC",
+      btns: ["Stablecoin"],
       list: [
-        'Deposit BTC into Madhouse Wallet',
-        'Borrow and Redeem USD/Buy Coverage',
-        'Withdraw BTC from Madhouse Coverage'
-      ]
-    }
-  ]
+        "Deposit BTC into Madhouse Wallet",
+        "Borrow and Redeem USD/Buy Coverage",
+        "Withdraw BTC from Madhouse Coverage",
+      ],
+    },
+  ];
 
-  const [showData, setShowData] = useState<number | null>(null)
-  const [btcAddress, setBtcAddress] = useState<boolean>(false)
+  const [showData, setShowData] = useState<number | null>(null);
+  const [btcAddress, setBtcAddress] = useState<boolean>(false);
 
   const BtcCardSettings = {
     dots: false,
@@ -124,29 +124,29 @@ const Dashboard: React.FC = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2
-        }
+          slidesToShow: 2,
+        },
       },
       {
         breakpoint: 575,
         settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
-  }
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
   const handleDataBtc = (key: number) => {
-    setShowData((prevKey) => (prevKey === key ? null : key))
-  }
+    setShowData((prevKey) => (prevKey === key ? null : key));
+  };
 
-  const handleAddressPop = () => setBtcAddress(!btcAddress)
+  const handleAddressPop = () => setBtcAddress(!btcAddress);
 
   return (
     <>
       <ThemeProvider>
-        {true ? <Header /> : ''}
         <BTCAddressPop btcAddress={btcAddress} setBtcAddress={setBtcAddress} />
+        {true ? <Header /> : ""}
         <section className="position-relative dashboard py-3">
           <Container>
             <Row>
@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
               <Col sm="6" className="my-2">
                 <CardCstm
                   className="rounded-3 p-3 px-lg-4 h-100"
-                  style={{ background: 'var(--cardBg2)' }}
+                  style={{ background: "var(--cardBg2)" }}
                 >
                   <div className="top pb-3">
                     <h2 className="m-0 fw-sbold">$ 84,234.27</h2>
@@ -216,7 +216,7 @@ const Dashboard: React.FC = () => {
                       <CardCstm
                         onClick={() => handleDataBtc(key)}
                         className="cardCstm rounded-3 p-3"
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: "pointer" }}
                       >
                         <div className="top d-flex align-items-start justify-content-between pb-2">
                           <span className="icn">{item.icn}</span>
@@ -230,7 +230,7 @@ const Dashboard: React.FC = () => {
                             <li
                               className="py-1 d-flex align-items-center justify-content-between"
                               style={{
-                                borderBottom: '1px dashed var(--lightBtn)'
+                                borderBottom: "1px dashed var(--lightBtn)",
                               }}
                             >
                               <span>Available Liquidity</span>
@@ -239,7 +239,7 @@ const Dashboard: React.FC = () => {
                             <li
                               className="py-1 d-flex align-items-center justify-content-between"
                               style={{
-                                borderBottom: '1px dashed var(--lightBtn)'
+                                borderBottom: "1px dashed var(--lightBtn)",
                               }}
                             >
                               <span>Current APY</span>
@@ -250,7 +250,7 @@ const Dashboard: React.FC = () => {
                             <li
                               className="py-1 d-flex align-items-center justify-content-between"
                               style={{
-                                borderBottom: '1px dashed var(--lightBtn)'
+                                borderBottom: "1px dashed var(--lightBtn)",
                               }}
                             >
                               <span>Monthly APY</span>
@@ -262,26 +262,19 @@ const Dashboard: React.FC = () => {
 
                       {showData === key && (
                         <div className="cardDescp my-2">
-                          <p className="themeClr">{item.btcHead}</p>
-                          <p className="m-0">{item.cardTitle}</p>
-                          <p className="m-0">{item.cardDescp}</p>
                           <ul className="list-unstyled p-0 m-0">
                             {item.list.map((data, index) => (
                               <li key={index} className="py-1">
-                                {data}
+                                <div
+                                  onClick={handleAddressPop}
+                                  className="rounded p-3 btn text-white d-flex align-items-center justify-content-center border"
+                                  style={{ fontSize: 12 }}
+                                >
+                                  {data}
+                                </div>
                               </li>
                             ))}
                           </ul>
-                          <div className="buttons pt-2">
-                            {item.btns.map((btn, index) => (
-                              <GreyBtn
-                                key={index}
-                                className="d-inline-block themeClr px-3 py-2 rounded-3"
-                              >
-                                {btn}
-                              </GreyBtn>
-                            ))}
-                          </div>
                         </div>
                       )}
                     </div>
@@ -293,10 +286,10 @@ const Dashboard: React.FC = () => {
         </section>
       </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
 
 const icn1 = (
   <svg
@@ -312,7 +305,7 @@ const icn1 = (
       fill="#0d1017"
     />
   </svg>
-)
+);
 
 const icn2 = (
   <svg
@@ -328,7 +321,7 @@ const icn2 = (
       fill="black"
     />
   </svg>
-)
+);
 
 const icn3 = (
   <svg
@@ -344,7 +337,7 @@ const icn3 = (
       fill="black"
     />
   </svg>
-)
+);
 
 const shareIcn = (
   <svg
@@ -359,7 +352,7 @@ const shareIcn = (
       fill="#7aff9b"
     />
   </svg>
-)
+);
 
 const infoIcn = (
   <svg
@@ -374,7 +367,7 @@ const infoIcn = (
       fill="#7aff9b"
     />
   </svg>
-)
+);
 
 const bookmarkIcn = (
   <svg
@@ -389,7 +382,7 @@ const bookmarkIcn = (
       fill="#7aff9b"
     />
   </svg>
-)
+);
 
 const redirectIcn = (
   <svg
@@ -408,7 +401,7 @@ const redirectIcn = (
       fill="#7aff9b"
     />
   </svg>
-)
+);
 
 const btcIcn = (
   <svg
@@ -445,7 +438,7 @@ const btcIcn = (
       </clipPath>
     </defs>
   </svg>
-)
+);
 
 const dai = (
   <svg
@@ -473,7 +466,7 @@ const dai = (
       </clipPath>
     </defs>
   </svg>
-)
+);
 
 const usdt = (
   <svg
@@ -488,7 +481,7 @@ const usdt = (
       fill="#009393"
     />
   </svg>
-)
+);
 
 const usdc = (
   <svg
@@ -518,4 +511,4 @@ const usdc = (
       </clipPath>
     </defs>
   </svg>
-)
+);
