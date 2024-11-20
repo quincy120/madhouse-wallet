@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # How to build an app with Safe and passkeys
 
 This example app shows how to create a web app for using passkeys in your Safe. Please read [How to build an app with Safe and passkeys](https://docs.safe.global/home/passkeys-tutorials/safe-passkeys-tutorial) to see how this app was created.
@@ -43,3 +44,8 @@ Please post any questions on [Stack Exchange](https://ethereum.stackexchange.com
 ## License
 
 MIT, see [LICENSE](LICENSE).
+=======
+# madhouse-wallet
+
+this is a wallet for lending and borrowing against bitcoin
+>>>>>>> 2406cbfe243693eaa06961c126214486fbe7be93
