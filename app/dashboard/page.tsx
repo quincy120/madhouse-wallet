@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { ThemeProvider } from "@/components/ContextApi/ThemeContext";
 
@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/ContextApi/ThemeContext";
 
 // img
 import p1 from "@/public/user.png";
-
+import Loader from "@/components/loader/index"
 import Aerodrome from "../../../Assets/images/Aerodrome.png";
 import BUSD from "../../../Assets/images/BUSD.png";
 import Velodrome from "../../../Assets/images/Velodrome.png";
@@ -146,12 +146,25 @@ const Dashboard: React.FC = () => {
   };
 
   const handleAddressPop = () => setBtcAddress(!btcAddress);
+  const [showFirstComponent, setShowFirstComponent] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowFirstComponent(false); // Hide the first component after 4-5 seconds
+    }, 3000); // 5000ms = 5 seconds
+
+    // Cleanup timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
       <ThemeProvider>
         <BTCAddressPop btcAddress={btcAddress} setBtcAddress={setBtcAddress} />
         {true ? <Header /> : ""}
+     {showFirstComponent ? (
+          <Loader />
+      ) : (
         <section className="position-relative dashboard py-3">
           <Container>
             <Row>
@@ -289,6 +302,7 @@ const Dashboard: React.FC = () => {
             </Row>
           </Container>
         </section>
+      )}
       </ThemeProvider>
     </>
   );
