@@ -1,0 +1,14 @@
+{
+  "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js": {
+    "id": "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js",
+    "files": []
+  },
+  "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/utils/rpc/webSocket.js -> isows": {
+    "id": "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/utils/rpc/webSocket.js -> isows",
+    "files": []
+  },
+  "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1": {
+    "id": "node_modules/.pnpm/viem@2.17.3_typescript@5.5.3/node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1",
+    "files": []
+  }
+}
