@@ -1,4 +1,4 @@
-// File: /home/parvinderkumar/frontend/madhouse-wallet/app/layout.tsx
+// File: /home/ritesh/Documents/ritesh/madhouse/madhouse-wallet/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
