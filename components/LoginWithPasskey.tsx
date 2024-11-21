@@ -1,14 +1,14 @@
-import FingerprintIcon from '@mui/icons-material/Fingerprint'
-import { Button, Divider, Paper, Stack, Typography } from '@mui/material'
-import { PasskeyArgType } from '@safe-global/protocol-kit'
-import { loadPasskeysFromLocalStorage } from '../lib/passkeys'
-import { Col, Container, Row } from 'react-bootstrap'
-import styled from 'styled-components'
+import FingerprintIcon from "@mui/icons-material/Fingerprint";
+import { Button, Divider, Paper, Stack, Typography } from "@mui/material";
+import { PasskeyArgType } from "@safe-global/protocol-kit";
+import { loadPasskeysFromLocalStorage } from "../lib/passkeys";
+import { Col, Container, Row } from "react-bootstrap";
+import styled from "styled-components";
 
 type props = {
-  handleCreatePasskey: () => {}
-  handleSelectPasskey: (passkey: PasskeyArgType) => {}
-}
+  handleCreatePasskey: () => {};
+  handleSelectPasskey: (passkey: PasskeyArgType) => {};
+};
 
 function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
   return (
@@ -16,16 +16,16 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
       <section
         className={` authLayout position-relative d-flex align-items-center justify-content-center flex-column`}
         style={{
-          zIndex: '9',
-          height: '100vh'
+          zIndex: "9",
+          // height: "100vh",
         }}
       >
-        <Container>
+        <Container className="px-0">
           <Row className="justify-content-center">
-            <Col md="6" sm="8" className="my-2">
+            <Col md="12" className="">
               <FormWrpper
                 className={` position-relative p-3 py-lg-5`}
-                style={{ maxHeight: '85vh', background: '#1e1e1e' }}
+                style={{ maxHeight: "85vh", background: "#1e1e1e" }}
               >
                 <div className="formInner position-relative px-lg-3">
                   <div className="w-100 inner text-center">
@@ -46,7 +46,7 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
                         Create a new Passkey
                       </Button>
                     </div>
-                    <Divider sx={{ marginTop: '32px' }}>
+                    <Divider sx={{ marginTop: "32px" }}>
                       <Typography variant="caption" color="GrayText">
                         OR
                       </Typography>
@@ -57,9 +57,9 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
                     <div className="pt-3 pt-lg-4 btnWrpper">
                       <Button
                         onClick={async () => {
-                          const passkeys = loadPasskeysFromLocalStorage()
+                          const passkeys = loadPasskeysFromLocalStorage();
 
-                          handleSelectPasskey(passkeys[0])
+                          handleSelectPasskey(passkeys[0]);
                         }}
                         // onClick={() => navigate('/dashboard')}
                         className="d-flex align-items-center justify-content-center commonBtn w-100"
@@ -78,7 +78,7 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
         </Container>
       </section>
     </>
-  )
+  );
 }
 
 const FormWrpper = styled.div`
@@ -90,6 +90,6 @@ const FormWrpper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;
 
-export default LoginWithPasskey
+export default LoginWithPasskey;

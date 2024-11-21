@@ -123,3 +123,7 @@ button:disabled {
 }
 
 /* css */
+
+.modal-body {
+  background-color: var(--backgroundColor);
+}

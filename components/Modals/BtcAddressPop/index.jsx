@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 
 // css
-import styles from "./BTCAddressPop.module.scss";
 
 // img
 
@@ -13,13 +12,13 @@ const BTCAddressPop = ({ btcAddress, setBtcAddress }) => {
     <>
       <Modal
         show={btcAddress}
-        className={`${styles.BTCAddressPop}  BTCAddressPop`}
+        className={`  BTCAddressPop`}
         onHide={handleAddressPop}
         backdrop="static"
         keyboard={false}
         centered
       >
-        <Modal.Body className={`${styles.modalBody} position-relative rounded`}>
+        <Modal.Body className={`position-relative rounded`}>
           <Button
             onClick={handleAddressPop}
             className="border-0 p-0 position-absolute"
