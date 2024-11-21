@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # How to build an app with Safe and passkeys
 
 This example app shows how to create a web app for using passkeys in your Safe. Please read [How to build an app with Safe and passkeys](https://docs.safe.global/home/passkeys-tutorials/safe-passkeys-tutorial) to see how this app was created.
