@@ -1,5 +1,5 @@
 import { PasskeyArgType, extractPasskeyData } from '@safe-global/protocol-kit'
-import { STORAGE_PASSKEY_LIST_KEY } from './constants'
+import { STORAGE_PASSKEY_LIST_KEY, STORAGE_ADDRESS } from './constants'
 
 /**
  * Create a passkey using WebAuthn API.
@@ -54,6 +54,15 @@ export function storePasskeyInLocalStorage(passkey: PasskeyArgType) {
   localStorage.setItem(STORAGE_PASSKEY_LIST_KEY, JSON.stringify(passkeys))
 }
 
+
+/**
+ * Store address in local storage.
+ */
+export function storeAddressInLocalStorage(passkey: string) {
+
+  localStorage.setItem(STORAGE_ADDRESS,(passkey))
+}
+
 /**
  * Load passkeys from local storage.
  * @returns {PasskeyArgType[]} List of passkeys.
@@ -78,3 +87,6 @@ export function getPasskeyFromRawId(passkeyRawId: string): PasskeyArgType {
 
   return passkey
 }
+
+
+ 

@@ -1,4 +1,5 @@
 export const STORAGE_PASSKEY_LIST_KEY = 'safe_passkey_list'
+export const STORAGE_ADDRESS = 'safe_address'
 export const RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com'
 export const CHAIN_NAME = 'sepolia'
 export const PAYMASTER_ADDRESS = '0x0000000000325602a77416A16136FDafd04b299f' // SEPOLIA

@@ -1,30 +1,54 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { PasskeyArgType } from "@safe-global/protocol-kit";
-import { createPasskey, storePasskeyInLocalStorage } from "@/lib/passkeys";
+import { createPasskey, storePasskeyInLocalStorage, storeAddressInLocalStorage, loadPasskeysFromLocalStorage } from "@/lib/passkeys";
 import LoginWithPasskey from "@/components/LoginWithPasskey";
 import SafeAccountDetails from "@/components/SafeAccountDetails";
-
+import { Safe4337Pack } from '@safe-global/relay-kit'
+import { BUNDLER_URL, CHAIN_NAME, RPC_URL, STORAGE_ADDRESS } from '../../../lib/constants'
 interface LoginPopProps {
   login: boolean;
+  checkLogin: boolean;
   setLogin: Dispatch<SetStateAction<boolean>>;
+  setCheckLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const LoginPop: React.FC<LoginPopProps> = ({ login, setLogin }) => {
+const LoginPop: React.FC<LoginPopProps> = ({ login, setLogin, setCheckLogin, checkLogin}) => {
   const [selectedPasskey, setSelectedPasskey] = useState<PasskeyArgType>();
+useEffect(()=>{
+  if(!checkLogin){
+    setSelectedPasskey(undefined)
+  }
+},[checkLogin])
+
 
   async function handleCreatePasskey() {
     const passkey = await createPasskey();
     storePasskeyInLocalStorage(passkey);
     setSelectedPasskey(passkey);
+    handleSelectedKey(passkey)
   }
-
+  async function handleSelectedKey(passkey: PasskeyArgType) {
+    const safe4337Pack = await Safe4337Pack.init({
+      provider: RPC_URL,
+      signer: passkey,
+      bundlerUrl: BUNDLER_URL,
+      options: {
+        owners: [],
+        threshold: 1
+      }
+    })
+    const safeAddress = await safe4337Pack.protocolKit.getAddress()
+    storeAddressInLocalStorage(safeAddress)
+    setCheckLogin(true)
+  }
   async function handleSelectPasskey(passkey: PasskeyArgType) {
     setSelectedPasskey(passkey);
+    handleSelectedKey(passkey)
   }
 
   const handleLogin = () => setLogin(!login);
-
+console.log("selectedPasskey-->", selectedPasskey)
   return (
     <>
       <Modal

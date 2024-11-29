@@ -171,15 +171,15 @@ const Dashboard: React.FC = () => {
               <Col lg="12" className="my-2">
                 <div className="d-flex align-items-center justify-content-between flex-wrap">
                   <div className="left d-flex align-items-center gap-10">
-                    <div className="flex-shrink-0 rounded-circle">
+                    {/* <div className="flex-shrink-0 rounded-circle">
                       <Image
                         src={p1}
                         alt=""
                         style={{ height: 40, width: 40 }}
                         className="img-fluid object-fit-cover rounded-circle"
                       />
-                    </div>
-                    <div className="content">
+                    </div> */}
+                    {/* <div className="content">
                       <h6 className="m-0 fw-normal">eth: 324rqwerqwer323423</h6>
                       <div className="d-flex align-items-center gap-10">
                         <Button className="border-0 p-0" variant="transparent">
@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
                           {redirectIcn}
                         </Button>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="right">
                     <Button

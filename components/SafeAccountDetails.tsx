@@ -66,29 +66,29 @@ function SafeAccountDetails({ passkey }: props) {
   const jiffscanLink = `https://jiffyscan.xyz/userOpHash/${userOp}?network=${CHAIN_NAME}`
 
   return (
-    <Paper sx={{ margin: '32px auto 0', minWidth: '320px' }}>
-      <Stack padding={4} alignItems={'center'}>
-        <Typography textAlign={'center'} variant="h1" color={'primary'}>
+    <div >
+      <div className='p-4'>
+        <h2 className='text-center themeClr'>
           Your Safe Account
-        </Typography>
+        </h2>
 
         {isLoading || !safeAddress ? (
-          <CircularProgress sx={{ margin: '24px 0' }} />
+          <div className="text-center">
+
+            <CircularProgress className='mx-auto' sx={{ margin: '24px 0' }} />
+          </div>
         ) : (
           <>
-            <Typography textAlign={'center'}>
+            <div className='text-center'>
               <Link
                 href={safeLink}
                 target="_blank"
                 underline="hover"
-                color="text"
+                color="white"
               >
                 <Tooltip title={safeAddress}>
-                  <Stack
-                    component={'span'}
-                    padding={4}
-                    direction={'row'}
-                    alignItems={'center'}
+                  <div
+                  className='p-4 d-flex align-items-center justify-content-center'
                   >
                     <Image
                       width={32}
@@ -99,46 +99,43 @@ function SafeAccountDetails({ passkey }: props) {
                       {splitAddress(safeAddress)}
                     </span>
                     <OpenInNewIcon />
-                  </Stack>
+                  </div>
                 </Tooltip>
               </Link>
-            </Typography>
+            </div>
 
             {!isSafeDeployed && <PendingDeploymentLabel />}
 
-            <Button
+            {/* <Button
               onClick={handleMintNFT}
               startIcon={<PhotoIcon />}
               variant="outlined"
               sx={{ margin: '24px' }}
             >
               Mint NFT
-            </Button>
+            </Button> */}
 
             {userOp && (
-              <Typography textAlign={'center'}>
+              <div className='text-center'>
                 <Link
                   href={jiffscanLink}
                   target="_blank"
                   underline="hover"
-                  color="text"
+                  color="white"
                 >
-                  <Stack
-                    component={'span'}
-                    padding={4}
-                    direction={'row'}
-                    alignItems={'center'}
-                  >
+                  <div
+                  className='p-4 d-flex align-items-center justify-content-center'
+                    >
                     {userOp}
                     <OpenInNewIcon />
-                  </Stack>
+                  </div>
                 </Link>
-              </Typography>
+              </div>
             )}
           </>
         )}
-      </Stack>
-    </Paper>
+      </div>
+    </div>
   )
 }
 
@@ -159,7 +156,7 @@ function splitAddress(
 function PendingDeploymentLabel() {
   return (
     <div style={{ margin: '12px auto' }}>
-      <span
+      {/* <span
         style={{
           marginRight: '8px',
           borderRadius: '4px',
@@ -171,7 +168,7 @@ function PendingDeploymentLabel() {
         }}
       >
         Deployment pending
-      </span>
+      </span> */}
     </div>
   )
 }

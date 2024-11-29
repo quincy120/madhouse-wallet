@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import Switch from "react-switch";
 import user from "@/public/user.png";
@@ -10,25 +10,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import LoginPop from "@/components/Modals/LoginPop";
-
+import {STORAGE_ADDRESS} from "@/lib/constants";
 const Header: React.FC = () => {
   const authenticate = false;
   const { theme, toggleTheme } = useTheme();
   const [confirmation, setConfirmation] = useState<boolean>(false);
   const router = useRouter();
   const [login, setLogin] = useState<boolean>(false); // Explicitly define the type as boolean
+  const [checkLogin, setCheckLogin] = useState<boolean>(false); // Explicitly define the type as boolean
 
   const handleLogin = () => setLogin(!login);
+  const DEFAULT_CHAR_DISPLAYED = 6
+  function splitAddress(
+    address: string,
+    charDisplayed: number = DEFAULT_CHAR_DISPLAYED
+  ): string {
+    const firstPart = address.slice(0, charDisplayed)
+    const lastPart = address.slice(address.length - charDisplayed)
+  
+    return `${firstPart}...${lastPart}`
+  }
+function logout(){
+  localStorage.removeItem(STORAGE_ADDRESS);
+  setCheckLogin(false)
+}
 
   // Get the current page name from the router's pathname
 
   const handleConfirmation = () => setConfirmation(!confirmation);
 
   const isChecked: boolean = theme === "light";
-
+useEffect(()=>{
+  setCheckLogin(localStorage.getItem(STORAGE_ADDRESS)?true:false)
+},[])
+console.log("checkLogin-->",checkLogin)
   return (
     <>
-      <LoginPop login={login} setLogin={setLogin} />
+      <LoginPop login={login} setLogin={setLogin} setCheckLogin={setCheckLogin} checkLogin={checkLogin}/>
       <header
         className="siteHeader sticky-top py-1 w-100 shadow"
         style={{ zIndex: 99, background: "var(--backgroundColor)" }}
@@ -77,10 +95,10 @@ const Header: React.FC = () => {
                       activeBoxShadow="0px 0px 0px 0px"
                     />
                   </div>
-                  {authenticate ? (
+                  {checkLogin ? (
                     <>
                       <Button className="d-flex align-items-center justify-content-center commonBtn">
-                        Gnosis Safe Address: 32345234sdfsd23423
+                        Safe Address: {splitAddress(localStorage.getItem(STORAGE_ADDRESS) || "")}
                       </Button>
                       <Dropdown>
                         <Dropdown.Toggle
@@ -106,14 +124,15 @@ const Header: React.FC = () => {
                                 Setting
                               </Link>
                             </li>
-                            <li className="py-1">
-                              <Link
-                                href="/login"
+                             <li className="py-1">
+                              <div
+                                onClick={logout}
                                 className="px-3 py-1 d-flex align-items-center gap-10 text-dark fw-sbold"
                               >
                                 Logout
-                              </Link>
+                              </div>
                             </li>
+                           
                           </ul>
                         </Dropdown.Menu>
                       </Dropdown>
