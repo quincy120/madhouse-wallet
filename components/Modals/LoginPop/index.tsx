@@ -24,30 +24,16 @@ const LoginPop: React.FC<LoginPopProps> = ({ login, setLogin, setCheckLogin, che
 
   async function addWalletToDb(passkey: any, address: any) {
 
-    let data = JSON.stringify({
-      "passkey": passkey,
+    axios.post('https://vj06rlfio3.execute-api.us-east-1.amazonaws.com/wallets', {
+      "passkey": passkey?.rawId,
       "walletAddress": address
-    });
-
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://vj06rlfio3.execute-api.us-east-1.amazonaws.com/wallets',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      data: data
-    };
-
-    axios.request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
+    })
+      .then(function (response) {
+        console.log(response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(function (error) {
+        console.log("test",error);
       });
-
   }
 
   async function handleCreatePasskey() {
