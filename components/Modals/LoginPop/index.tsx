@@ -6,6 +6,7 @@ import LoginWithPasskey from "@/components/LoginWithPasskey";
 import SafeAccountDetails from "@/components/SafeAccountDetails";
 import { Safe4337Pack } from '@safe-global/relay-kit'
 import { BUNDLER_URL, CHAIN_NAME, RPC_URL, STORAGE_ADDRESS } from '../../../lib/constants'
+import axios from "axios";
 interface LoginPopProps {
   login: boolean;
   checkLogin: boolean;
@@ -13,20 +14,58 @@ interface LoginPopProps {
   setCheckLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const LoginPop: React.FC<LoginPopProps> = ({ login, setLogin, setCheckLogin, checkLogin}) => {
+const LoginPop: React.FC<LoginPopProps> = ({ login, setLogin, setCheckLogin, checkLogin }) => {
   const [selectedPasskey, setSelectedPasskey] = useState<PasskeyArgType>();
-useEffect(()=>{
-  if(!checkLogin){
-    setSelectedPasskey(undefined)
-  }
-},[checkLogin])
+  useEffect(() => {
+    if (!checkLogin) {
+      setSelectedPasskey(undefined)
+    }
+  }, [checkLogin])
 
+  async function addWalletToDb(passkey: any, address: any) {
+
+    let data = JSON.stringify({
+      "passkey": passkey,
+      "walletAddress": address
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://vj06rlfio3.execute-api.us-east-1.amazonaws.com/wallets',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      data: data
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }
 
   async function handleCreatePasskey() {
     const passkey = await createPasskey();
     storePasskeyInLocalStorage(passkey);
     setSelectedPasskey(passkey);
     handleSelectedKey(passkey)
+    const safe4337Pack = await Safe4337Pack.init({
+      provider: RPC_URL,
+      signer: passkey,
+      bundlerUrl: BUNDLER_URL,
+      options: {
+        owners: [],
+        threshold: 1
+      }
+    })
+    const safeAddress = await safe4337Pack.protocolKit.getAddress()
+    await addWalletToDb(passkey, safeAddress)
   }
   async function handleSelectedKey(passkey: PasskeyArgType) {
     const safe4337Pack = await Safe4337Pack.init({
@@ -48,7 +87,7 @@ useEffect(()=>{
   }
 
   const handleLogin = () => setLogin(!login);
-console.log("selectedPasskey-->", selectedPasskey)
+  console.log("selectedPasskey-->", selectedPasskey)
   return (
     <>
       <Modal
