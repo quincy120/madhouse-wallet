@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/ContextApi/ThemeContext";
 
 // img
 import p1 from "@/public/user.png";
-import Loader from "@/components/loader/index"
+import Loader from "@/components/loader/index";
 import Aerodrome from "../../../Assets/images/Aerodrome.png";
 import BUSD from "../../../Assets/images/BUSD.png";
 import Velodrome from "../../../Assets/images/Velodrome.png";
@@ -23,9 +23,9 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-
-const AreaChart = dynamic(() => import('@/components/graph/AreaChart/index'), { ssr: false });
-
+const AreaChart = dynamic(() => import("@/components/graph/AreaChart/index"), {
+  ssr: false,
+});
 
 interface CardData {
   head: string;
@@ -162,16 +162,16 @@ const Dashboard: React.FC = () => {
       <ThemeProvider>
         <BTCAddressPop btcAddress={btcAddress} setBtcAddress={setBtcAddress} />
         {true ? <Header /> : ""}
-     {showFirstComponent ? (
+        {showFirstComponent ? (
           <Loader />
-      ) : (
-        <section className="position-relative dashboard py-3">
-          <Container>
-            <Row>
-              <Col lg="12" className="my-2">
-                <div className="d-flex align-items-center justify-content-between flex-wrap">
-                  <div className="left d-flex align-items-center gap-10">
-                    {/* <div className="flex-shrink-0 rounded-circle">
+        ) : (
+          <section className="position-relative dashboard py-3">
+            <Container>
+              <Row>
+                <Col lg="12" className="my-2">
+                  <div className="d-flex align-items-center justify-content-between flex-wrap">
+                    <div className="left d-flex align-items-center gap-10">
+                      {/* <div className="flex-shrink-0 rounded-circle">
                       <Image
                         src={p1}
                         alt=""
@@ -179,7 +179,7 @@ const Dashboard: React.FC = () => {
                         className="img-fluid object-fit-cover rounded-circle"
                       />
                     </div> */}
-                    {/* <div className="content">
+                      {/* <div className="content">
                       <h6 className="m-0 fw-normal">eth: 324rqwerqwer323423</h6>
                       <div className="d-flex align-items-center gap-10">
                         <Button className="border-0 p-0" variant="transparent">
@@ -190,119 +190,123 @@ const Dashboard: React.FC = () => {
                         </Button>
                       </div>
                     </div> */}
-                  </div>
-                  <div className="right">
-                    <Button
-                      variant="transparent"
-                      className="border-0 p-0 themeClr fw-sbold"
-                    >
-                      <span className="icn me-2">+</span> Add Signer
-                    </Button>
-                  </div>
-                </div>
-              </Col>
-              <Col lg="12" className="my-2">
-                <CounterList data={cardData} />
-              </Col>
-              <Col sm="6" className="my-2">
-                <CardCstm
-                  className="rounded-3 p-3 px-lg-4 h-100"
-                  style={{ background: "var(--cardBg2)" }}
-                >
-                  <div className="top pb-3">
-                    <h2 className="m-0 fw-sbold">$ 84,234.27</h2>
-                    <p className="m-0 py-1 themeClr">−36.15 (0.15%)</p>
-                    <p className="m-0">14 Nov, 12:47 pm IST • Disclaimer</p>
-                  </div>
-                  <div className="graphBody">
-                    <AreaChart />
-                  </div>
-                </CardCstm>
-              </Col>
-              <Col lg="6" className="my-2">
-                <MyActivity />
-              </Col>
-              <Col lg="12" className="my-2">
-                <TransactionTable />
-              </Col>
-
-              <Col lg="12" className="my-2">
-                <Slider {...BtcCardSettings}>
-                  {BtcCard.map((item, key) => (
-                    <div key={key} className="my-2 px-3">
-                      <p className="m-0 text-center">{item.exchange}</p>
-                      <CardCstm
-                        onClick={() => handleDataBtc(key)}
-                        className="cardCstm rounded-3 p-3"
-                        style={{ cursor: "pointer" }}
-                      >
-                        <div className="top d-flex align-items-start justify-content-between pb-2">
-                          <span className="icn">{item.icn}</span>
-                          <span className="icn">{item.icn1}</span>
-                        </div>
-                        <div className="content pt-2">
-                          <ul
-                            className="list-unstyled ps-0 mb-0"
-                            style={{ fontSize: 12 }}
-                          >
-                            <li
-                              className="py-1 d-flex align-items-center justify-content-between"
-                              style={{
-                                borderBottom: "1px dashed var(--lightBtn)",
-                              }}
-                            >
-                              <span>Available Liquidity</span>
-                              <span className="fw-sbold">{item.liquidity}</span>
-                            </li>
-                            <li
-                              className="py-1 d-flex align-items-center justify-content-between"
-                              style={{
-                                borderBottom: "1px dashed var(--lightBtn)",
-                              }}
-                            >
-                              <span>Current APY</span>
-                              <span className="fw-sbold">
-                                {item.CurrentAPY}
-                              </span>
-                            </li>
-                            <li
-                              className="py-1 d-flex align-items-center justify-content-between"
-                              style={{
-                                borderBottom: "1px dashed var(--lightBtn)",
-                              }}
-                            >
-                              <span>Monthly APY</span>
-                              <span className="fw-sbold">{item.monthAPY}</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </CardCstm>
-
-                      {showData === key && (
-                        <div className="cardDescp my-2">
-                          <ul className="list-unstyled p-0 m-0">
-                            {item.list.map((data, index) => (
-                              <li key={index} className="py-1">
-                                <div
-                                  onClick={handleAddressPop}
-                                  className="rounded p-3 btn text-white d-flex align-items-center justify-content-center border"
-                                  style={{ fontSize: 12 }}
-                                >
-                                  {data}
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
                     </div>
-                  ))}
-                </Slider>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      )}
+                    <div className="right">
+                      <Button
+                        variant="transparent"
+                        className="border-0 p-0 themeClr fw-sbold"
+                      >
+                        <span className="icn me-2">+</span> Add Signer
+                      </Button>
+                    </div>
+                  </div>
+                </Col>
+                <Col lg="12" className="my-2">
+                  <CounterList data={cardData} />
+                </Col>
+                <Col sm="6" className="my-2">
+                  <CardCstm
+                    className="rounded-3 p-3 px-lg-4 h-100"
+                    style={{ background: "var(--cardBg2)" }}
+                  >
+                    <div className="top pb-3">
+                      <h2 className="m-0 fw-sbold">$ 84,234.27</h2>
+                      <p className="m-0 py-1 themeClr">−36.15 (0.15%)</p>
+                      <p className="m-0">14 Nov, 12:47 pm IST • Disclaimer</p>
+                    </div>
+                    <div className="graphBody">
+                      <AreaChart />
+                    </div>
+                  </CardCstm>
+                </Col>
+                <Col lg="6" className="my-2">
+                  <MyActivity />
+                </Col>
+                <Col lg="12" className="my-2">
+                  <TransactionTable />
+                </Col>
+
+                <Col lg="12" className="my-2">
+                  <Slider {...BtcCardSettings}>
+                    {BtcCard.map((item, key) => (
+                      <div key={key} className="my-2 px-3">
+                        <p className="m-0 text-center">{item.exchange}</p>
+                        <CardCstm
+                          onClick={() => handleDataBtc(key)}
+                          className="cardCstm rounded-3 p-3"
+                          style={{ cursor: "pointer" }}
+                        >
+                          <div className="top d-flex align-items-start justify-content-between pb-2">
+                            <span className="icn">{item.icn}</span>
+                            <span className="icn">{item.icn1}</span>
+                          </div>
+                          <div className="content pt-2">
+                            <ul
+                              className="list-unstyled ps-0 mb-0"
+                              style={{ fontSize: 12 }}
+                            >
+                              <li
+                                className="py-1 d-flex align-items-center justify-content-between"
+                                style={{
+                                  borderBottom: "1px dashed var(--lightBtn)",
+                                }}
+                              >
+                                <span>Available Liquidity</span>
+                                <span className="fw-sbold">
+                                  {item.liquidity}
+                                </span>
+                              </li>
+                              <li
+                                className="py-1 d-flex align-items-center justify-content-between"
+                                style={{
+                                  borderBottom: "1px dashed var(--lightBtn)",
+                                }}
+                              >
+                                <span>Current APY</span>
+                                <span className="fw-sbold">
+                                  {item.CurrentAPY}
+                                </span>
+                              </li>
+                              <li
+                                className="py-1 d-flex align-items-center justify-content-between"
+                                style={{
+                                  borderBottom: "1px dashed var(--lightBtn)",
+                                }}
+                              >
+                                <span>Monthly APY</span>
+                                <span className="fw-sbold">
+                                  {item.monthAPY}
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </CardCstm>
+
+                        {showData === key && (
+                          <div className="cardDescp my-2">
+                            <ul className="list-unstyled p-0 m-0">
+                              {item.list.map((data, index) => (
+                                <li key={index} className="py-1">
+                                  <div
+                                    onClick={handleAddressPop}
+                                    className="rounded p-3 btn text-white d-flex align-items-center justify-content-center border"
+                                    style={{ fontSize: 12 }}
+                                  >
+                                    {data}
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </Slider>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+        )}
       </ThemeProvider>
     </>
   );

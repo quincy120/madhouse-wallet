@@ -12,8 +12,14 @@ body {
 .fw-sbold {
   font-weight: 600 !important;
 }
+a {
+  text-decoration: none !important;
+}
 .themeClr {
   color: #76fc93 !important;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 .dropdown .dropdown-toggle:after {
   display: none;
