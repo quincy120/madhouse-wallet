@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
-import Header from '../../components/Header'
+import React, { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "../../components/Header";
 
 // css
-import styles from './mainLayout.module.scss'
+import styles from "./mainLayout.module.scss";
 
-import Sidebar from '../../components/Header/sidebar/Sidebar'
+import Sidebar from "../../components/Header/sidebar/Sidebar";
 
 const MainLayout = ({ children }) => {
   return (
@@ -19,6 +19,6 @@ const MainLayout = ({ children }) => {
       </head>
       <body>{children}</body>
     </html>
-  )
-}
-export default MainLayout
+  );
+};
+export default MainLayout;

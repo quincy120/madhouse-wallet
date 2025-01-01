@@ -1,8 +1,8 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React from "react";
+import { Button } from "react-bootstrap";
 
 // css
-import styles from './Table.module.scss'
+import styles from "./Table.module.scss";
 
 // image
 
@@ -36,23 +36,23 @@ const TableLayout = ({ column, data }) => {
                             <td className=" fw-sbold bg-transparent border-0 themeClr">
                               {item.component(data, columnkey, data)}
                             </td>
-                          )
+                          );
                         }
 
                         return (
                           <td className=" fw-sbold bg-transparent border-0 themeClr">
                             {data[item?.accessor]}
                           </td>
-                        )
+                        );
                       })}
                   </tr>
-                )
+                );
               })}
           </tbody>
         </table>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TableLayout
+export default TableLayout;

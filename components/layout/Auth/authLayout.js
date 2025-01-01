@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
 
 // css
-import styles from './Auth.module.scss'
+import styles from "./Auth.module.scss";
 
 export default function AuthLayout({ children }) {
   return (
@@ -20,5 +20,5 @@ export default function AuthLayout({ children }) {
         {children}
       </body>
     </html>
-  )
+  );
 }
